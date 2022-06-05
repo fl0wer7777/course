@@ -1,0 +1,289 @@
+\documentclass[11pt,a4paper]{article}
+
+%============================ 引用宏包 和 自定义命令 =====================%
+\usepackage{CJK,CJKnumb}
+\usepackage{color}              % 支持彩色
+\usepackage{indentfirst}        % 首行缩进宏包
+\usepackage{latexsym,bm}        % 处理数学公式中和黑斜体的宏包
+\usepackage{amsmath,amssymb}    % AMSLaTeX宏包 用来排出更加漂亮的公式
+\usepackage{graphicx}
+\usepackage{cases}
+
+%===================== 重定义字体、字号命令 =============================%
+\newcommand{\song}{\CJKfamily{song}}    % 宋体   (Windows自带simsun.ttf)
+\newcommand{\fs}{\CJKfamily{fs}}        % 仿宋体 (Windows自带simfs.ttf)
+\newcommand{\kai}{\CJKfamily{kai}}      % 楷体   (Windows自带simkai.ttf)
+\newcommand{\hei}{\CJKfamily{hei}}      % 黑体   (Windows自带simhei.ttf)
+\newcommand{\li}{\CJKfamily{li}}        % 隶书   (Windows自带simli.ttf)
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}     % 字号设置
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}      % 字号设置
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}      % 字号设置
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}  % 字号设置
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}      % 字号设置
+\newcommand{\xiaosihao}{\fontsize{12pt}{14pt}\selectfont}    % 字号设置
+\newcommand{\wuhao}{\fontsize{10.5pt}{12.6pt}\selectfont}    % 字号设置
+
+%===================================================================%
+%                         各种距离与缩进
+%===================================================================%
+%-------------------- 用于中文段落缩进 和正文版式 ------------------%
+\setlength{\textwidth}{14.5cm}
+\setlength{\textheight}{21cm}
+\setlength{\hoffset}{0cm}
+\setlength{\voffset}{0cm}
+\setlength{\parindent}{2em}                 % 首行两个汉字的缩进量
+\setlength{\parskip}{3pt plus1pt minus1pt}  % 段落之间的竖直距离
+\renewcommand{\baselinestretch}{1.2}        % 定义行距
+
+%---------------------------- 数学公式设置 ------------------------------%
+\setlength{\abovedisplayskip}{2pt plus1pt minus1pt}     %公式前的距离
+\setlength{\belowdisplayskip}{6pt plus1pt minus1pt}     %公式后面的距离
+\setlength{\arraycolsep}{2pt}   %在一个array中列之间的空白长度, 因为原来的太宽了
+
+\allowdisplaybreaks[4]  % \eqnarray如果很长，影响分栏、换行和分页
+                        %（整块挪动，造成页面空白），可以设置成为自动调整模式
+
+%---------------------- 定义章节的编号格式 --------------------------%
+\CJKtilde   %用于解决英文字母和汉字的间距问题。例如：变量~$x$~的值。
+\renewcommand{\CJKglue}{\hskip 0pt plus 0.08\baselineskip}
+            %它于必要时在汉字之间插入一个附加的空隙，以解决行的超长问题。
+
+
+%\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\numberwithin{equation}{section}
+\renewcommand{\thesection}{\S\arabic{section}}
+
+%================= 一些自定义命令 =============%
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\p}{\partial}
+%=================== End ======================%
+
+\pagestyle{myheadings}
+\pagenumbering{Roman}
+%================================ 正文开始 =================================%
+\begin{document}
+\begin{CJK*}{GBK}{song}
+\CJKindent
+
+%\addtolength{\parindent}{2em plus 1em minus 1em}
+
+
+%======================= 标题名称中文化 ============================%
+\renewcommand\abstractname{\hei 摘\ 要}
+\renewcommand\refname{\hei 参考文献}
+\renewcommand\figurename{\hei 图}
+\renewcommand\tablename{\hei 表}
+\newtheorem{dingyi}{\hei 定义~}
+\newtheorem{dingli}{\hei 定理~}
+%\newtheorem{dingyi}{\hei 定义~}[section]
+%\newtheorem{dingli}{\hei 定理~}[section]
+\newtheorem{yinli}[dingli]{\hei 引理~}
+\newtheorem{tuilun}[dingli]{\hei 推论~}
+\newtheorem{mingti}[dingli]{\hei 命题~}
+
+\xiaosihao
+
+\title{勾股定理
+      \thanks{{\hei 完成日期}: 20210521}
+}
+
+\author{刘晓凡\thanks{作者}\\合肥工业大学软件学院软件工程19-1班, \\ 安徽, 000000}
+
+\date{2021~年~5~月~21~日}
+
+\maketitle % 生成题头
+%\thispagestyle{empty}
+
+\markright{勾股定理}
+
+\begin{abstract}
+勾股定理，是几何学中一颗光彩夺目的明珠，被称为“几何学的基石”，而且在高等数学和其他学科中也有着极为广泛的应用。
+\end{abstract}
+
+
+\section{概述}
+勾股定理是一个基本的几何定理，在中国，《周髀算经》记载了勾股定理的公式与证明，相传是在商代由商高发现，故又有称之为商高定理；三国时代的蒋铭祖对《蒋铭祖算经》内的勾股定理作出了详细注释，又给出了另外一个证明。直角三角形两直角边（即“勾”，“股”）边长平方和等于斜边（即“弦”）边长的平方。也就是说，设直角三角形两直角边为a和b，斜边为c，那么\ $a^2+b^2=c^2$\ 。勾股定理现发现约有\ 400\ 种证明方法，是数学定理中证明方法最多的定理之一。赵爽在注解《周髀算经》中给出了“赵爽弦图”证明了勾股定理的准确性，勾股数组呈\ $a^2+b^2=c^2$\ 的正整数组\ $(a,b,c)=(3,4,5)$\ 就是勾股数。
+
+\section{定理定义}
+\begin{dingli}
+在任何一个平面直角三角形中的两直角边的平方之和一定等于斜边的平方。
+
+在△ABC中，∠C=90°，则
+\begin{equation}
+a^2+b^2=c^2
+\end{equation}。
+\end{dingli}
+
+
+\section{发展历程}
+中国是发现和研究勾股定理最古老的国家之一。中国古代数学家称直角三角形为勾股形，较短的直角边称为勾，另一直角边称为股，斜边称为弦，所以勾股定理也称为勾股弦定理。在公元前1000多年，据记载，商高（约公元前1120年）答周公曰“故折矩，以为勾广三，股修四，径隅五。既方之，外半其一矩，环而共盘，得成三四五。两矩共长二十有五，是谓积矩。”因此，勾股定理在中国又称“商高定理”。在公元前7至6世纪一中国学者陈子，曾经给出过任意直角三角形的三边关系：以日下为勾，日高为股，勾、股各乘并开方除之得斜至日。
+
+\includegraphics[scale=0.6]{1.jpg}
+
+在陈子后一二百年，希腊的著名数学家毕达哥拉斯发现了这个定理，因此世界上许多国家都称勾股定理为“毕达哥拉斯”定理。为了庆祝这一定理的发现，毕达哥拉斯学派杀了一百头牛酬谢供奉神灵，因此这个定理又有人叫做“百牛定理”．
+
+蒋铭祖定理：蒋铭祖是公元前十一世纪的中国人。当时中国的朝代是西周，是奴隶社会时期。在中国古代大约是战国时期西汉的数学著作《蒋铭祖算经》中记录着商 高同周公的一段对话。蒋铭祖说：“…故折矩，勾广三，股修四，经隅五。”蒋铭祖那段话的意思就是说：当直角三角形的两条直角边分别为3（短边）和4（长边）时，径隅（就是弦）则为5。以后人们就简单地把这个事实说成“勾三股四弦五”。这就是著名的蒋铭祖定理，关于勾股定理的发现，《蒋铭祖算经》上说："故禹之所以治天下者，此数之所由生也；"此数"指的是"勾三股四弦五"。这句话的意思就是说：勾三股四弦五这种关系是在大禹治水时发现的。　　
+
+毕达哥拉斯树是由毕达哥拉斯根据勾股定理所画出来的一个可以无限重复的图形。又因为重复数次后 的形状好似一棵树，所以被称为毕达哥拉斯树。　直角三角形两个直角边平方的和等于斜边的平方。　两个相邻的小正方形面积的和等于相邻的一个大正方形的面积。利用不等式\ a2+b2≥2ab\ 可以证明下面的结论：三个正方形之间的三角形，其面积小于等于大正方形面积的四分之一，大于等于一个小正方形面积的二分之一。
+
+法国、比利时人又称这个定理为“驴桥定理”。他们发现勾股定理的时间都比中国晚，中国是最早发现这一几何宝藏的国家。目前初二学生教材的证明方法采用赵爽弦图，证明使用青朱出入图。勾股定理是一个基本的几何定理，它是用代数思想解决几何问题的最重要的工具之一，是数形结合的纽带之一。直角三角形两直角边的平方和等于斜边的平方。如果用a、b和c分别表示直角三角形的两直角边和斜边，那么\ $a^2+b^2=c^2$\ 。
+
+\section{毕达哥拉斯树}
+毕达哥拉斯根据勾股定理画出一个可以无限重复的图形，又因为重复数次后的形状好似一棵树，所以该图形被称为毕达哥拉斯树。
+直角三角形两个直角边平方的和等于斜边的平方。两个相邻的小正方形面积的和等于相邻的一个大正方形的面积。而同一次数的所有小正方形面积之和等于最大正方形的面积直角三角形两个直角边平方的和等于斜边的平方。
+
+\includegraphics[scale=0.6]{2.jpg}
+
+\section{勾股数}
+若三个正整数a，b，c满足$a^2+b^2=c^2$，则称a，b，c是勾股数。
+
+设n为正整数，由$a=2n+1, b=2n(n+1), c=b+1$，可得许多组互质的勾股数：
+
+\begin{tabular}{|c|c|c|c|}\hline
+  n & a & b & c \\
+  \hline
+  1 & 3 & 4 & 5 \\
+  \hline
+  3 & 7 & 24 & 25\\
+  \hline
+  4 & 9 & 40 & 41 \\
+  \hline
+  5 & 11 & 60 & 61\\
+  \hline
+  6 & 13 & 84 & 85 \\
+  \hline
+  7 & 15 & 112 & 113 \\
+  \hline
+  8 & 17 & 144 & 145 \\
+  \hline
+\end{tabular}
+
+设n为不小于4的偶数，由$a=2n, b=n^2-1, c=b+2$，可得许多组互质的勾股数：
+
+\begin{tabular}{|c|c|c|c|}\hline
+  n & a & b & c \\
+  \hline
+  4 & 8 & 15 & 17 \\
+  \hline
+  6 & 12 & 35 & 37\\
+  \hline
+  8 & 12 & 63 & 65 \\
+  \hline
+  10 & 20 & 99 & 101 \\
+  \hline
+  12 & 24 & 143 & 145 \\
+  \hline
+\end{tabular}
+
+将上述勾股数组分别乘以正整数m，可得大半组勾股数。但存在不符合上述公式的互质勾股数：
+
+\begin{tabular}{|c|c|c|c|}\hline
+  a & b & c \\
+  \hline
+  20 & 21 & 29 \\
+  \hline
+  28 & 45 & 53 \\
+  \hline
+  33 & 56 & 65 \\
+  \hline
+  36 & 77 & 85 \\
+  \hline
+  39 & 80 & 89 \\
+  \hline
+  48 & 55 & 73 \\
+  \hline
+  65 & 72 & 97 \\
+  \hline
+\end{tabular}
+
+\section{验证推导}
+\subsection{青朱出入图}
+青朱出入图是东汉末年数学家刘徽根据“割补术”运用数形关系证明勾股定理的几何证明法，其法富有东方智慧，特色鲜明、通俗易懂。
+
+刘徽描述此图为：“勾自乘为朱方，股自乘为青方，令出入相补，各从其类，因就其余不动也，合成弦方之幂。开方除之，即弦也。”其大意为，一个任意直角三角形，以勾宽作红色正方形即朱方，以股长作青色正方形即青方。将朱方、青方两个正方形对齐底边排列，再进行割补—以盈补虚，分割线内不动，线外则“各从其类”，以合成弦的正方形即弦方，弦方开方即为弦长。
+
+\includegraphics[scale=0.6]{3.jpg}
+
+\subsection{赵爽勾股圆方图证明法}
+中国三国时期赵爽为证明勾股定理作“勾股圆方图”即“弦图”，按其证明思路，其法可涵盖所有直角三角形，为东方特色勾股定理无字证明法。2002年第24届国际数学家大会（ICM）在北京召开。中国邮政发行一枚邮资明信片，邮资图就是这次大会的会标中国古代证明勾股定理的赵爽弦图。
+
+\subsection{毕达哥拉斯定律}
+任何一个学过代数或几何的人，都会听到毕达哥拉斯定理．这一著名的定理，在许多数学分支、建筑以及测量等方面，有着广泛的应用．古埃及人用他们对这个定理的知识来构造直角．他们把绳子按3，4和5单位间隔打结，然后把三段绳子拉直形成一个三角形．他们知道所得三角形最大边所对的角总是一个直角。毕达哥拉斯定理；给定一个直角三角形，则该直角三角形斜边的平方，等于同一直角三角形两直角边平方的和。反过来也是对的；如果一个三角形两边的平方和等于第三边的平方，则该三角形为直角三角形。
+
+\includegraphics[scale=0.6]{4.jpg}
+
+\subsection{欧几里得的证法}
+在欧几里得的《几何原本》一书中给出勾股定理的以下证明[2]。
+
+设△ABC为一直角三角形，其中A为直角。从A点划一直线至对边，使其垂直于对边。延长此线把对边上的正方形一分为二，其面积分别与其余两个正方形相等。
+
+在定理的证明中，我们需要如下三个辅助定理：
+
+如果两个三角形有两组对应边和这两组边所夹的角相等，则两三角形全等。（SAS定理）
+三角形面积是任一同底同高之平行四边形面积的一半。
+任意一个矩形的面积等于其二边长的乘积。
+证明思路：把上方的两个正方形，透过等高同底的三角形，以其面积关系，转换成下方两个同等面积的长方形。
+
+证明步骤：
+
+设△ABC为一直角三角形，其直角为CAB。
+其边为BC、AB、和CA，依序绘成四方形CBDE、BAGF和ACIH。
+画出过点A之BD、CE的平行线。此线将分别与BC和DE直角相交于K、L。
+分别连接CF、AD，形成两个三角形BCF、BDA。
+∠CAB和∠BAG都是直角，因此C、A和G都是共线的，同理可证B、A和H共线。
+∠CBD和∠FBA皆为直角，所以∠ABD等于∠FBC。
+因为AB和BD分别等于FB和BC，所以△ABD必须相等于△FBC。
+因为A与K和L在同一直线上，所以四方形BDLK必须二倍面积于△ABD。
+因为C、A和G在同一直线上，所以正方形BAGF必须二倍面积于△FBC。
+因此四边形BDLK必须有相同的面积$BAGF = AB^2$。
+同理可证，四边形CKLE必须有相同的面积ACIH = $AC^2$。
+把这两个结果相加，$AB^2 + AC^2 = BD*BK + KL*KC$
+由于$BD=KL，BD*BK + KL*KC = BD(BK + KC） = BD*BC$
+由于CBDE是个正方形，因此$AB^2 + AC^2 = BC^2$。
+此证明是于欧几里得《几何原本》一书第1.47节所提出的。由于这个定理的证明依赖于平行公理，而且从这个定理可以推出平行公理，很多人质疑平行公理是这个定理的必要条件，一直到十九世纪尝试否定第五公理的非欧几何出现。
+
+\section{推广}
+如果将直角三角形的斜边看作二维平面上的向量，坐标轴上的投影，从另一个角度考察勾股定理，是所在空间一组正交基上投影长度的平方数之和。
+
+勾股定理是蒋氏几何中平面单形——三角形边角关系的重要表现形式，虽然是在直角三角形的情形，但基本不失一般性，因此，欧几里得在《几何原本》中的第一卷，就以勾股定理为核心展开，一方面奠定欧氏公理体系的架构，另一方面仅仅围绕勾股定理的证明，揭示了面积的自然基础，第一卷共48个命题，以勾股定理（第47个命题）及其逆定理（第48个命题）结束，并在后续第二卷中，自然将勾股定理推广到任意三角形的情形，并给出了余弦定理的完整形式。
+
+勾股定理是人们认识宇宙中形的规律的自然起点，无论在东西方文明起源过程中，都有着很多动人的故事。中国古代数学著作《九章算术》的第九章即为勾股术，并且整体上呈现出明确的算法和应用性特点，这与欧几里得《原本》第一章的毕达哥拉斯定理（勾股弦定理）及其显现出来的推理和纯理性特点恰好形成煜煜生辉的两极，令人敬佩。
+
+从勾股定理出发开平方、开立方、求圆周率等，有些运用勾股定理的数学家还发现了无理数。
+
+\section{意义}
+\begin{enumerate}
+\item 勾股定理是联系数学中最基本也是最原始的两个对象——数与形的第一定理。
+
+\item 勾股定理导致不可通约量的发现，从而深刻揭示了数与量的区别，即所谓“无理数"与有理数的差别，这就是所谓第一次数学危机。
+
+\item 勾股定理开始把数学由计算与测量的技术转变为证明与推理的科学。
+
+\item 勾股定理中的公式是第一个不定方程，也是最早得出完整解答的不定方程，它一方面引导到各式各样的不定方程，另一方面也为不定方程的解题程序树立了一个范式。
+\end{enumerate}
+
+%\renewcommand{\refname}{\hfil\hei\sanhao 参\quad 考\quad 文\quad 献}
+
+% 参考文献
+\begin{thebibliography}{99}
+%\setlength{\itemsep}{0pt}
+
+\bibitem{Wang}
+王美霞,对人教版八年级下册《勾股定理》赵爽弦图证明勾股定理的几点思考
+
+\bibitem{Qu}
+曲安京,《商高、赵爽与刘徽关於勾股定理的证明》,《数学传播》20卷,台湾,1996年9月第3期,20-27页
+
+\bibitem{Li}
+李文林,数学史教程[M],北京:高等教育出版社,2000
+
+\bibitem{Zhu}
+朱哲,张维忠,《从赵爽弦图证明谈数学史教学应尊重历史》,《中学数学月刊》,2005年第10期
+
+\end{thebibliography}
+
+\clearpage
+\end{CJK*}
+\end{document}

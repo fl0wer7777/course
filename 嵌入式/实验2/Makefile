@@ -1,0 +1,15 @@
+CC=arm-linux-gcc
+EXEC=pthread
+OBJS=pthread.o
+CFLAGES=
+LDFLAGS+= -lpthread
+
+all: $(EXEC)
+$(EXEC):$(OBJS) 
+	$(CC) $(LDFLAGS) -o $@ $(OBJS)
+
+clean:
+	-rm -f $(EXEC) *.elf *.gdb *.o
+
+
+

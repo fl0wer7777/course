@@ -1,0 +1,5 @@
+这里使用SpringBoot后端编写接口，实现一个本地服务器。
+http://localhost:9090/api/img/upload便是打开后端后网络请求的接口地址。
+上传是上传到文件夹中，下载是到桌面（我设置的）。
+如果使用后端接口，请修改maven仓库地址后运行。
+后端添加了swagger，可以使用http://localhost:9090/swagger-ui.html#/查看接口。

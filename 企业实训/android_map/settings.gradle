@@ -1,0 +1,10 @@
+include ':app'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  '../flutter_map/.android/include_flutter.groovy'
+))
+rootProject.name = "android_map"
+
+include ':flutter_map'
+project(':flutter_map').projectDir = new File('../flutter_map')

@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size:  100MB
+      # 设置总上传的文件大小
+      max-request-size:  500MB
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/test01?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 12345678
+
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  typeAliasesPackage: com.haley.demo.entity
+
+

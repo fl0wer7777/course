@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.example.myapplication"
+        minSdkVersion 18
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","arm64-v8a","x86_64"
+        }
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'demokey.keystore'
+            keyPassword '123456'
+            storeFile file('demokey.keystore')
+            storePassword '123456'
+        }
+        release {
+            keyAlias 'demokey.keystore'
+            keyPassword '123456'
+            storeFile file('demokey.keystore')
+            storePassword '123456'
+        }
+        debug {
+            keyAlias 'demokey.keystore'
+            keyPassword '123456'
+            storeFile file('demokey.keystore')
+            storePassword '123456'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation project(path: ':flutter')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //3D地图so及jar
+    compile 'com.amap.api:3dmap:latest.integration'
+    //定位功能
+    compile 'com.amap.api:location:latest.integration'
+    //搜索功能
+    compile 'com.amap.api:search:latest.integration'
+
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.4'
+
+}

@@ -1,0 +1,17 @@
+QGroupBox{
+	border-width:1px; 
+  	 border-style:solid;
+ 	 border-color:red; 
+  	margin-top: 0.5ex;
+}
+QPushButton:hover
+{
+    color:red;
+}
+QLabel {
+    font: 9pt;
+    color: red;
+}
+QRadioButton{
+	color: red;
+}
